@@ -58,9 +58,6 @@ jquery:1.12.4-1
 jquery3-api:3.5.1-2
 jsch:0.1.55.2
 junit:1.48
-kubernetes-cli:1.9.0
-kubernetes-client-api:4.11.1
-kubernetes:1.28.5
 ldap:1.26
 lockable-resources:2.10
 mailer:1.32.1

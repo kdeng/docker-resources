@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk11
 
 ENV CURL_OPTIONS -sSfLk
 
@@ -13,13 +13,20 @@ RUN apt-get update && \
 RUN curl -fsSL -k https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update && \
-    apt-get install -y docker-ce docker-ce-cli containerd.io && \
+    apt-get install -y docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    maven \
+    git \
+    && \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
     rm -rf /var/lib/{apt,dpkg,cache,log} && \
-    usermod -aG docker jenkins
+    usermod -aG docker jenkins && \
+    usermod -aG sudo jenkins && \
+    add-apt-repository --remove "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
-USER jenkins
+USER root
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
