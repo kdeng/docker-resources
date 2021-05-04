@@ -1,6 +1,7 @@
 FROM jenkins/jenkins:lts-jdk11
 
-ENV CURL_OPTIONS -sSfLk
+ENV CURL_OPTIONS -sSfLk -C -
+ENV JENKINS_UC_DOWNLOAD=http://mirrors.jenkins-ci.org
 
 USER root
 RUN apt-get update && \
