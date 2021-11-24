@@ -127,3 +127,4 @@ generic-webhook-trigger:latest
 jaxb:latest
 Office-365-Connector:latest
 xvfb:latest
+thinBackup:latest

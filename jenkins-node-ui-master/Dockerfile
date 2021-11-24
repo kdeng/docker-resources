@@ -26,7 +26,7 @@ RUN apt-get update && \
 ENV PATH=/chromedriver:$PATH
 
 # Install selected extensions and other stuff
-ENV HELM_VERSION=3.5.0
+ENV HELM_VERSION=3.6.3
 ENV HELM_FILENAME=helm-v${HELM_VERSION}-linux-amd64.tar.gz
 RUN wget https://get.helm.sh/${HELM_FILENAME} -P /tmp \
   && tar -zxvf /tmp/${HELM_FILENAME} -C /tmp \
@@ -47,6 +47,7 @@ RUN apt-get update && \
     containerd.io \
     maven \
     git \
+    vim \
     && \
     apt-get clean autoclean && \
     apt-get autoremove --yes && \
