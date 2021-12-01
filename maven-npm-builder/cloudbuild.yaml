@@ -1,0 +1,17 @@
+steps:
+
+- id: DOCKER_BUILD
+  name: gcr.io/cloud-builders/docker
+  dir: maven-npm-builder
+  entrypoint: /bin/bash
+  args:
+  - '-c'
+  - |
+    docker build -q \
+      --tag kdeng/maven-npm-builder:latest \
+      --cache-from kdeng/maven-npm-builder:latest .
+    docker push kdeng/maven-npm-builder:latest
+
+images: [ 'kdeng/maven-npm-builder:latest' ]
+
+timeout: 1200s
